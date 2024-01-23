@@ -19,4 +19,19 @@ class Repository {
       print(e.toString());
     }
   }
+
+  Future postData(String name, String avatar, String message) async {
+    try {
+      final response = await http.post(Uri.parse(_baseUrl),
+          body: {"name": name, "avatar": avatar, "message": message});
+
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 }
