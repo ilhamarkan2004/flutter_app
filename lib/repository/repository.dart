@@ -25,7 +25,7 @@ class Repository {
       final response = await http.post(Uri.parse(_baseUrl),
           body: {"name": name, "avatar": avatar, "message": message});
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         return true;
       } else {
         return false;

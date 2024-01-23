@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/repository/repository.dart';
 
 class AddPerson extends StatefulWidget {
   const AddPerson({super.key});
@@ -8,6 +9,10 @@ class AddPerson extends StatefulWidget {
 }
 
 class _AddPersonState extends State<AddPerson> {
+  Repository repository = Repository();
+  final _nameController = TextEditingController();
+  final _avatarController = TextEditingController();
+  final _messageController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,15 +24,31 @@ class _AddPersonState extends State<AddPerson> {
         body: Container(
           child: Column(children: [
             TextField(
+              controller: _nameController,
               decoration: InputDecoration(hintText: 'name'),
             ),
             TextField(
+              controller: _avatarController,
               decoration: InputDecoration(hintText: 'avatar'),
             ),
             TextField(
+              controller: _messageController,
               decoration: InputDecoration(hintText: 'message'),
             ),
-            ElevatedButton(onPressed: () {}, child: Text('Submit'))
+            ElevatedButton(
+                onPressed: () async {
+                  bool response = await repository.postData(
+                      _nameController.text,
+                      _avatarController.text,
+                      _messageController.text);
+
+                  if (response) {
+                    Navigator.of(context).pop();
+                  } else {
+                    print('Post data failed!');
+                  }
+                },
+                child: Text('Submit'))
           ]),
         ));
   }

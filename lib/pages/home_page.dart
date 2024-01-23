@@ -47,7 +47,10 @@ class _MyHomeState extends State<MyHome> {
           separatorBuilder: (context, index) => Divider(),
           itemCount: persons.length),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.of(context).pushNamed('/add-person'),
+        onPressed: () async {
+          await Navigator.pushNamed(context, '/add-person');
+          getData();
+        },
         child: Icon(Icons.add),
       ),
     );
