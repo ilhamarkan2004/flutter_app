@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/model.dart';
 import 'package:flutter_application_1/repository/repository.dart';
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(const MyApp());
@@ -54,12 +55,15 @@ class _MyHomeState extends State<MyHome> {
         ),
         body: ListView.separated(
             itemBuilder: (context, index) => ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: NetworkImage(persons[index].avatar),
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(persons[index].avatar),
+                  ),
+                  title: Text(persons[index].name),
+                  subtitle: Text(persons[index].message,
+                      maxLines: 2, overflow: TextOverflow.ellipsis),
+                  trailing: Text(DateFormat.jm()
+                      .format(DateTime.parse(persons[index].createdAt))),
                 ),
-                title: Text(persons[index].name),
-                subtitle: Text(persons[index].message,
-                    maxLines: 2, overflow: TextOverflow.ellipsis)),
             separatorBuilder: (context, index) => Divider(),
             itemCount: persons.length));
   }
