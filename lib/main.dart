@@ -58,7 +58,8 @@ class _MyHomeState extends State<MyHome> {
                   backgroundImage: NetworkImage(persons[index].avatar),
                 ),
                 title: Text(persons[index].name),
-                subtitle: Text(persons[index].message)),
+                subtitle: Text(persons[index].message,
+                    maxLines: 2, overflow: TextOverflow.ellipsis)),
             separatorBuilder: (context, index) => Divider(),
             itemCount: persons.length));
   }
