@@ -37,13 +37,16 @@ class _MyHomeState extends State<MyHome> {
       ),
       body: ListView.separated(
           itemBuilder: (context, index) => GestureDetector(
-                onTap: () => Navigator.of(context)
-                    .pushNamed(AddPerson.route, arguments: [
-                  persons[index].id,
-                  persons[index].name,
-                  persons[index].avatar,
-                  persons[index].message
-                ]),
+                onTap: () async {
+                  await Navigator.of(context)
+                      .pushNamed(AddPerson.route, arguments: [
+                    persons[index].id,
+                    persons[index].name,
+                    persons[index].avatar,
+                    persons[index].message
+                  ]);
+                  getData();
+                },
                 child: ListTile(
                   leading: CircleAvatar(
                     backgroundImage: NetworkImage(persons[index].avatar),

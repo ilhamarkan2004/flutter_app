@@ -62,7 +62,22 @@ class _AddPersonState extends State<AddPerson> {
                     print('Post data failed!');
                   }
                 },
-                child: Text('Submit'))
+                child: Text('Submit')),
+            ElevatedButton(
+                onPressed: () async {
+                  bool response = await repository.putData(
+                      args[0],
+                      _nameController.text,
+                      _avatarController.text,
+                      _messageController.text);
+
+                  if (response) {
+                    Navigator.of(context).pop();
+                  } else {
+                    print('Post data failed!');
+                  }
+                },
+                child: Text('Update'))
           ]),
         ));
   }
