@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/repository/repository.dart';
 
 class AddPerson extends StatefulWidget {
+  static String route = '/add-person';
   const AddPerson({super.key});
 
   @override

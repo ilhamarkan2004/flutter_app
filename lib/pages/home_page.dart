@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/model.dart';
+import 'package:flutter_application_1/pages/add_person_page.dart';
 import 'package:flutter_application_1/repository/repository.dart';
 import 'package:intl/intl.dart';
 
 class MyHome extends StatefulWidget {
+  static String route = '/homepage';
   const MyHome({super.key});
 
   @override
@@ -48,7 +50,7 @@ class _MyHomeState extends State<MyHome> {
           itemCount: persons.length),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          await Navigator.pushNamed(context, '/add-person');
+          await Navigator.pushNamed(context, AddPerson.route);
           getData();
         },
         child: Icon(Icons.add),

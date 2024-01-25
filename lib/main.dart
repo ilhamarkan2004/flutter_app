@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
       ),
       home: MyHome(),
       routes: {
-        '/homepage': (context) => MyHome(),
-        '/add-person': (context) => AddPerson()
+        MyHome.route: (context) => MyHome(),
+        AddPerson.route: (context) => AddPerson()
       },
     );
   }
