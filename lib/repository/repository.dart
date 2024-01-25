@@ -34,4 +34,19 @@ class Repository {
       print(e.toString());
     }
   }
+
+  Future putData(int id, String name, String avatar, String message) async {
+    try {
+      final response = await http.put(Uri.parse(_baseUrl + '/' + id.toString()),
+          body: {"name": name, "avatar": avatar, "message": message});
+
+      if (response.statusCode == 201) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 }
