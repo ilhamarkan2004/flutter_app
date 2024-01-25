@@ -14,8 +14,21 @@ class _AddPersonState extends State<AddPerson> {
   final _nameController = TextEditingController();
   final _avatarController = TextEditingController();
   final _messageController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as List<String>;
+
+    if (args[1].isNotEmpty) {
+      _nameController.text = args[1];
+    }
+    if (args[2].isNotEmpty) {
+      _avatarController.text = args[2];
+    }
+    if (args[3].isNotEmpty) {
+      _messageController.text = args[3];
+    }
+
     return Scaffold(
         appBar: AppBar(
           title: Text('Add Person'),

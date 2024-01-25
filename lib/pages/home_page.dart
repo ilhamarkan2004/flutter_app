@@ -36,15 +36,24 @@ class _MyHomeState extends State<MyHome> {
         backgroundColor: Colors.indigo,
       ),
       body: ListView.separated(
-          itemBuilder: (context, index) => ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: NetworkImage(persons[index].avatar),
+          itemBuilder: (context, index) => GestureDetector(
+                onTap: () => Navigator.of(context)
+                    .pushNamed(AddPerson.route, arguments: [
+                  persons[index].id,
+                  persons[index].name,
+                  persons[index].avatar,
+                  persons[index].message
+                ]),
+                child: ListTile(
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(persons[index].avatar),
+                  ),
+                  title: Text(persons[index].name),
+                  subtitle: Text(persons[index].message,
+                      maxLines: 2, overflow: TextOverflow.ellipsis),
+                  trailing: Text(DateFormat.jm()
+                      .format(DateTime.parse(persons[index].createdAt))),
                 ),
-                title: Text(persons[index].name),
-                subtitle: Text(persons[index].message,
-                    maxLines: 2, overflow: TextOverflow.ellipsis),
-                trailing: Text(DateFormat.jm()
-                    .format(DateTime.parse(persons[index].createdAt))),
               ),
           separatorBuilder: (context, index) => Divider(),
           itemCount: persons.length),
