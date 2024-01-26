@@ -71,8 +71,14 @@ class _MyHomeState extends State<MyHome> {
                           color: Colors.red,
                         ),
                         onPressed: () async {
-                          // Handle delete functionality here
-                          // await repository.deletePerson(persons[index].id);
+                          bool response =
+                              await repository.deleteData(persons[index].id);
+
+                          if (response) {
+                            print('Delete data success');
+                          } else {
+                            print('Delete data failed');
+                          }
                           getData(); // Refresh the list after deletion
                         },
                       ),
