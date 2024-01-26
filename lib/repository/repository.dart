@@ -49,4 +49,18 @@ class Repository {
       print(e.toString());
     }
   }
+
+  Future deleteData(String id) async {
+    try {
+      final response = await http.delete(Uri.parse(_baseUrl + '/' + id));
+
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 }
