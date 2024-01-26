@@ -52,10 +52,32 @@ class _MyHomeState extends State<MyHome> {
                     backgroundImage: NetworkImage(persons[index].avatar),
                   ),
                   title: Text(persons[index].name),
-                  subtitle: Text(persons[index].message,
-                      maxLines: 2, overflow: TextOverflow.ellipsis),
-                  trailing: Text(DateFormat.jm()
-                      .format(DateTime.parse(persons[index].createdAt))),
+                  subtitle: Text(
+                    persons[index].message,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        DateFormat.jm()
+                            .format(DateTime.parse(persons[index].createdAt)),
+                      ),
+                      SizedBox(width: 8),
+                      IconButton(
+                        icon: Icon(
+                          Icons.delete,
+                          color: Colors.red,
+                        ),
+                        onPressed: () async {
+                          // Handle delete functionality here
+                          // await repository.deletePerson(persons[index].id);
+                          getData(); // Refresh the list after deletion
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
           separatorBuilder: (context, index) => Divider(),
